@@ -1,8 +1,30 @@
 server:
   port: ${random.int(50000,51000)}
+  
 spring:  application:
     name: user-service
+    
+  h2:    console:      enabled: true
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        
 eureka:
   instance:    instance-id: ${spring.application.name}:${server.port}  client:    register-with-eureka: true
     fetch-registry: true
     service-url:      defaultZone: http://127.0.0.1:8761/eureka
+      
+greeting:
+  message: Welcome to the Simple E-commerce.
