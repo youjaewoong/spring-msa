@@ -1,4 +1,4 @@
-package com.example.discoveryservice.service;
+package com.example.userservice.service;
 
 import java.util.UUID;
 
@@ -7,9 +7,9 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.discoveryservice.dto.UserDto;
-import com.example.discoveryservice.jpa.UserEntity;
-import com.example.discoveryservice.jpa.UserRepository;
+import com.example.userservice.dto.UserDto;
+import com.example.userservice.jpa.UserEntity;
+import com.example.userservice.jpa.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService{

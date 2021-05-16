@@ -1,4 +1,4 @@
-package com.example.discoveryservice.controller;
+package com.example.userservice.controller;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.discoveryservice.dto.UserDto;
-import com.example.discoveryservice.service.UserService;
-import com.example.discoveryservice.vo.Greeting;
-import com.example.discoveryservice.vo.RequestUser;
-import com.example.discoveryservice.vo.ResponseUser;
+import com.example.userservice.dto.UserDto;
+import com.example.userservice.service.UserService;
+import com.example.userservice.vo.Greeting;
+import com.example.userservice.vo.RequestUser;
+import com.example.userservice.vo.ResponseUser;
 
 import lombok.extern.slf4j.Slf4j;
 

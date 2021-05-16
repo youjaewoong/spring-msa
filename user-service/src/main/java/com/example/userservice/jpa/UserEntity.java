@@ -1,4 +1,4 @@
-package com.example.discoveryservice.jpa;
+package com.example.userservice.jpa;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
