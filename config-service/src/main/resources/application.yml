@@ -8,4 +8,4 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/youjaewoong/spring-msa/tree/Configuratin-Service/git-local-repo
+          uri: file:///d:/dev/money/git-local-repo
