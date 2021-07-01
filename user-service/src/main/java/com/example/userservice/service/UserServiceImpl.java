@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.userservice.client.OrderServiceClient;
 import com.example.userservice.dto.UserDto;
 import com.example.userservice.jpa.UserEntity;
 import com.example.userservice.jpa.UserRepository;
@@ -29,13 +30,16 @@ public class UserServiceImpl implements UserService{
 	BCryptPasswordEncoder passwordEncoder;
 	Environment env;
 	RestTemplate restTemplate;
+	OrderServiceClient orderServiceClient;
 
 	public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, Environment env,
-			RestTemplate restTemplate) {
+			RestTemplate restTemplate, OrderServiceClient orderServiceClient) {
+		super();
 		this.userRepository = userRepository;
 		this.passwordEncoder = passwordEncoder;
 		this.env = env;
 		this.restTemplate = restTemplate;
+		this.orderServiceClient = orderServiceClient;
 	}
 
 	@Override
@@ -79,6 +83,7 @@ public class UserServiceImpl implements UserService{
 		//List<ResponseOrder> orders = new ArrayList<>();
 		
 		/* Using as rest template */
+		/*
 		String orderUrl = String.format(env.getProperty("order_service.url"), userId);
 		ResponseEntity<List<ResponseOrder>> orderListResponse = 
 				restTemplate.exchange(orderUrl, HttpMethod.GET, null, 
@@ -86,7 +91,11 @@ public class UserServiceImpl implements UserService{
 		
 		List<ResponseOrder> ordersList = orderListResponse.getBody();
 		userDto.setOrders(ordersList);
+		*/
 		
+		/* Using a feign client */
+		List<ResponseOrder> ordersList = orderServiceClient.getOrders(userId);
+		userDto.setOrders(ordersList);
 		
 		return userDto;
 	}
