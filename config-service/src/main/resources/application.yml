@@ -21,6 +21,7 @@ spring:
           uri: https://github.com/youjaewoong/spring-cloud-config
 #          username:
 #          password:
+
 management: 
   endpoints:
     web:
