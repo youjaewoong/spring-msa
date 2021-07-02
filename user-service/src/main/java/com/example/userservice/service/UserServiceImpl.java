@@ -23,7 +23,11 @@ import com.example.userservice.jpa.UserEntity;
 import com.example.userservice.jpa.UserRepository;
 import com.example.userservice.vo.ResponseOrder;
 
+import feign.FeignException;
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService{
 
 	UserRepository userRepository;
@@ -94,7 +98,14 @@ public class UserServiceImpl implements UserService{
 		*/
 		
 		/* Using a feign client */
-		List<ResponseOrder> ordersList = orderServiceClient.getOrders(userId);
+		/* Feign exception handling */
+		List<ResponseOrder> ordersList = null;
+		try {
+			ordersList = orderServiceClient.getOrders(userId);
+		}catch(FeignException ex) {
+			log.error(ex.getMessage());
+		}
+		
 		userDto.setOrders(ordersList);
 		
 		return userDto;
