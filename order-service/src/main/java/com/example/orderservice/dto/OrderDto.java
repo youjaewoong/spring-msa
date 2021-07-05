@@ -6,9 +6,7 @@ import lombok.Data;
 
 @Data
 public class OrderDto implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 7775606836394384345L;
 	private String productId;
 	private Integer qty;
