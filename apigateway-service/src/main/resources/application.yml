@@ -55,7 +55,7 @@ spring:
         filters:
           - RemoveRequestHeader=Cookie
           - RewritePath=/user-service/(?<segment>.*), /$\{segment}
-          - AuthorizationHeaderFilter
+#          - AuthorizationHeaderFilter
       - id: user-service
         uri: lb://USER-SERVICE
         predicates:
@@ -72,6 +72,14 @@ spring:
         uri: lb://ORDER-SERVICE
         predicates:
           - Path=/order-service/**
+      - id: order-service
+        uri: lb://ORDER-SERVICE
+        predicates:
+          - Path=/order-service/actuator/**
+          - Method=GET
+        filters:
+          - RemoveRequestHeader=Cookie
+          - RewritePath=/order-service/(?<segment>.*), /$\{segment}
       - id: first-service
         uri: lb://MY-FIRST-SERVICE
         predicates:
@@ -88,7 +96,7 @@ spring:
           #- AddRequestHeader=second-request, second-requets-header2
           #- AddResponseHeader=second-response, second-response-header2
           - name: CustomFilter
-          - name: LoggingFilter
+          - name: LoggingFilter 
             args:
               baseMessage: Hi, there.
               preLogger: true
