@@ -21,7 +21,7 @@ spring:  application:
      url: jdbc:mariadb://localhost:3306/mydb
      driver-class-name: org.mariadb.jdbc.Driver
      username: root
-     password: test1234
+     password: test1357
     
   jpa:
 #    database-platform: org.hibernate.dialect.H2Dialect
