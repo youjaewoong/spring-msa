@@ -1,6 +1,6 @@
 encrypt:
   key-store:
-    #location: file:///d:/dev/money/msa-workspace/keystore/apiEncryptionkey.jks
-    location: file:/apiEncryptionkey.jks
+    location: file:///d:/dev/money/msa-workspace/keystore/apiEncryptionkey.jks
+    #location: file:/apiEncryptionkey.jks
     password: test1234
     alias: apiEncryptionKey

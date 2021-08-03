@@ -12,8 +12,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.userservice.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Configuration
 @EnableWebSecurity
+@Slf4j
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 	
 	private UserService userService;
@@ -31,11 +34,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		//http.authorizeRequests().antMatchers("/users/**").permitAll();
 		http.authorizeRequests().antMatchers("/actuator/**").permitAll();
+		
+		log.debug(">>>>>>>>>> gateway.ip {}", env.getProperty("gateway.ip"));
 		http.authorizeRequests().antMatchers("/users")
 			.hasIpAddress(env.getProperty("gateway.ip"))
 			.and()
 			.addFilter(getAuthenticationFilter());
-		
 		
 		http.headers().frameOptions().disable();
 	}
