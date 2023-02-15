@@ -1,7 +1,8 @@
 server:
   port: 14875
   
-spring:  application:
+spring:
+  application:
     name: user-service
   zipkin:
     base-url: http://127.0.0.1:9411
@@ -16,13 +17,17 @@ spring:  application:
     username: guest
     password: guest
     
-  h2:    console:      enabled: true
-
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+      path: /h2-console
   datasource:
-    url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: jdbc:h2:mem:testdb
+    #username: sa
+    #password: 12345
     
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
@@ -34,14 +39,20 @@ spring:  application:
         show_sql: true
         
 eureka:
-  instance:    instance-id: ${spring.application.name}:${server.port}  client:    register-with-eureka: true
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    register-with-eureka: true
     fetch-registry: true
-    service-url:      defaultZone: http://127.0.0.1:8761/eureka
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
       
 greeting:
   message: Welcome to the Simple E-commerce.
 
-logging:  level:    com.example.userservice.client: DEBUG
+logging:
+  level:
+    com.example.userservice.client: DEBUG
 
 #token:
 #  expiration_time: 86400000
