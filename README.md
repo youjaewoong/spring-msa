@@ -48,9 +48,7 @@
 ---
 
 ### user service
-Fault Tolerance(=장애 허용 시스템) 에서 사용되는 대표적인 패턴으로써 서비스에서 타 서비스 호출 시 에러, 응답지연, 무응답, 
-일시적인 네트워크 문제 등을 요청이 무작위로 실패하는 경우에 Circuit를 오픈하여 메세지가 다른 서비스로 전파되지 못하도록 막고 미리 정의해놓은 
-Fallback Response를 보내어 서비스 장애가 전파되지 않도록 하는 패턴 (대표적으로 MSA 환경에서 사용)
+사용자 로그인, 조회, 토큰 생성 및 인증처리 처리하는 서비스 입니다.
 #### client.OrderServiceClient
 ```
 feignClient 로 orderService method 를 호출합니다.
@@ -96,3 +94,25 @@ db 호출하는 UserRepository 객체입니다.
    - jwt 토큰생성
    - 인증 성공시 context에 email password 등록
 ```
+
+---
+
+### order-service
+사용자 주문생성, 주문 조회 등을 확인하는 서비스 입니다. 주문 생성 시 동시성 처리에 대한 kafkaclient 로직이 포함되어있습니다.
+#### controller.OrderController
+```
+사용자 주문생성, 주문 조회 등의 rest api 입니다.
+```
+#### messagequeue.KafkaProducer
+```
+설정된 kafkaTemplate 으로 공통 send 로직이 구햔되어 있습니다.
+```
+#### messagequeue.KafkaProducerConfig
+```
+kafkaTemplate 전송 시 필요한 기능을 초기설정 합니다.
+```
+#### security.WebSecurity
+```
+user-service 의 요청이 들어올 경우 permitAll 처리 합니다.
+```
+
