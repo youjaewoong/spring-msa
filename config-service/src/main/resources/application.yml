@@ -1,29 +1,30 @@
 server:
   port: 8888
-  
+
 spring:
+#  profiles:
+#    active: native
   application:
     name: config-service
-  rabbitmq:
-    host: 127.0.0.1
-    port: 5672
-    username: guest
-    password: guest
-  profiles:
-    active: native
   cloud:
     config:
       server:
         native:
-          search-locations: file:///d:/dev/money/msa-workspace/spring-cloud-config
-        git:
-#          uri: file:///d:/dev/money/git-local-repo
-          uri: https://github.com/youjaewoong/spring-cloud-config
-#          username:
-#          password:
+          search-locations: file:///C://work//git-local-repo
+        git: #default
+          uri: https://github.com/joneconsulting/spring-cloud-config
+          default-label: master
+          username: <github-id>
+          password: <gihub-accessToken>
+        bootstrap: true
+#  rabbitmq:
+#    host: 127.0.0.1
+#    port: 5672
+#    username: guest
+#    password: guest
 
-management: 
+management:
   endpoints:
     web:
       exposure:
-        include: health, busrefresh
+        include: health, busrefresh, refresh, metrics

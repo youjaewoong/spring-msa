@@ -1,6 +1,7 @@
 encrypt:
-  key-store:
-    location: file:///d:/dev/money/msa-workspace/keystore/apiEncryptionkey.jks
-    #location: file:/apiEncryptionkey.jks
-    password: test1234
-    alias: apiEncryptionKey
+    #  key: abcdefghijklmnopqrstuvwxyz0123456789
+    key-store:
+        location: file://${user.home}/Desktop/git/toy-msa/config-service/apiEncryptionKey.jks
+#        location: file:/apiEncryptionKey.jks
+        password: test1234
+        alias: apiEncryptionKey

@@ -1,16 +1,14 @@
 package com.example.userservice.service;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
-
 import com.example.userservice.dto.UserDto;
 import com.example.userservice.jpa.UserEntity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService extends UserDetailsService{
-	UserDto createUser(UserDto userDto);
-	
-	UserDto getUserByUserId(String userId);
-	
-	Iterable<UserEntity> getUserByAll();
+public interface UserService extends UserDetailsService {
+    UserDto createUser(UserDto userDto);
 
-	UserDto getUserDetailsByEmail(String userName);
+    UserDto getUserByUserId(String userId);
+    Iterable<UserEntity> getUserByAll();
+
+    UserDto getUserDetailsByEmail(String userName);
 }
